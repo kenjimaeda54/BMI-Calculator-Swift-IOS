@@ -1,27 +1,58 @@
+## BMI Calcultator
+Aplicacao para calcular IMC
 
-![App Brewery Banner](Documentation/AppBreweryBanner.png)
+## Motivacao
+Aprender novos recursos na construcao de aplicativos em IOS e reforcar os anteriores
 
-#  BMI Calculator
-
-## Our Goal
-
-The goal of this tutorial is to learn more about Optionals, solidify your understanding of the MVC design pattern and to introduce the concept of Classes. We’ll compare objects created from classes with instances of Structs that we learnt about earlier. 
-
-## What you will create
-
-By the end of the module, you will have made a Body Mass Index calculator. Based on the user’s weight and height it will calculate their body mass and give a piece of health advice depending on whether if they have eaten too many pies or if they need to eat more pies. 
-
-## What you will learn
-
-* How to create multi-screen apps with animated navigation.
-* Optional binding, optional chaining and the nil coalescing operator.
-* How to create classes and difference between classes and structs. 
-* Pass by value vs. pass by reference. 
-* Formatting Strings. 
-* Color literals.
+## Feature
+- Aprendi o uso do [NumberFormatter](https://developer.apple.com/documentation/foundation/numberformatter) 
+- Essa classe e ideal para formatar numeros,exemplo currency
+- Aprendi o uso de [pow](https://developer.apple.com/documentation/foundation/1779833-pow) para elevar numeros a potencia
+- Tem muitos exemplos de operadores [matematicos](https://developer.apple.com/documentation/kernel/math)
 
 
 
->This is a companion project to The App Brewery's Complete App Development Bootcamp, check out the full course at [www.appbrewery.co](https://www.appbrewery.co/)
 
-![End Banner](Documentation/readme-end-banner.png)
+
+## 
+
+- Aprendi o uso de segue para transição entre telas, esta categoria de navegação e em pilha, uma tela e colocada sobre a outra
+- Para enviar dados a outra tela sobrescrevemos o método prepare 
+- Ideal verificar o identificador do segue, porque  evitamos efeitos colaterais quando possuímos muitas telas
+- Identificador e nome que demos a nossa classe no custom em UIViewController
+- Eu consigo  capturar as propriedades do slider referenciando com IBOutlet, assim não preciso criar variavies extras para armazenar valor real do slider
+- Para retornar posso usar dismiss
+- Para navegar uso do performSegue
+- Toda classe UIViewController tem acesso as suas propriedades idêntico ao label tem acesso ao text. Abaixo usei para pintar a tela
+
+```swift
+  //ResultViewController
+  
+      override func viewDidLoad() {
+        super.viewDidLoad()
+        labelResultsBMI.text = BMIcalculte
+        adviceLabel.text = BMIadvice
+        view.backgroundColor = BMIcolor
+    }
+    
+
+  
+  //CalculaterViewController
+    @IBOutlet weak var sliderTextHeight: UISlider!
+    @IBOutlet weak var sliderTextWeight: UISlider!
+  
+   self.performSegue(withIdentifier: "goToResult", sender:self)
+ 
+   override  func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "goToResult" {
+            let destionVc = segue.destination as! ResultsViewController
+            destionVc.BMIcalculte = String(format: "%.2f", calculatorBrain.getBMIValue())
+            destionVc.BMIcolor = calculatorBrain.getBMIColor()
+            destionVc.BMIadvice = calculatorBrain.getBMIAdvice()
+        }
+        
+    }
+
+
+```
