@@ -1,17 +1,27 @@
 ## BMI Calcultator
-Aplicacao para calcular IMC
+Aplicação para calcular IMC
 
-## Motivacao
-Aprender novos recursos na construcao de aplicativos em IOS e reforcar os anteriores
+## Motivação
+Aprender novos recursos na construção de aplicativos em IOS e reforçar os anteriores
 
 ## Feature
 - Aprendi o uso do [NumberFormatter](https://developer.apple.com/documentation/foundation/numberformatter) 
-- Essa classe e ideal para formatar numeros,exemplo currency
-- Aprendi o uso de [pow](https://developer.apple.com/documentation/foundation/1779833-pow) para elevar numeros a potencia
-- Tem muitos exemplos de operadores [matematicos](https://developer.apple.com/documentation/kernel/math)
+- Essa classe e ideal para formatar números, exemplo currency
+- Aprendi o uso de [pow](https://developer.apple.com/documentation/foundation/1779833-pow) para elevar números a potência
+- Tem muitos exemplos de operadores [matemáticos](https://developer.apple.com/documentation/kernel/math)
+- Aprendi um método para formatar usando string
 
+```swift
+formater.maximumFractionDigits = 2
+formater.numberStyle = .currency
+let valueFormated = formater.string(from: sender.value as NSNumber)
+print(valueFormated!)
 
+weight / pow(height, 2)
 
+String(format: "%.2f", sender.value)
+
+```
 
 
 ## 
