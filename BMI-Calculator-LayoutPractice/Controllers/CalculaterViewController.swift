@@ -9,8 +9,8 @@
 import UIKit
 
 
-class ViewController: UIViewController {
-
+class CalculaterViewController: UIViewController {
+    
     
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     //dessa maneira nao preciso de uma variavel global,aqui ja consigo o valor do slider
     @IBOutlet weak var sliderTextWeight: UISlider!
     
-    var BMI: Float = 0.0
+    var calculatorBrain = CalculatorBrain()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +42,19 @@ class ViewController: UIViewController {
     @IBAction func handleCalculate(_ sender: UIButton) {
         //po e a quantidade de casa a multiplar o numero
         //se for 3 seria 2 x 2 x 2
-        BMI = sliderTextWeight.value / pow(sliderTextHeight.value, 2)
-        print(BMI)
+        calculatorBrain.calculateBMI(sliderTextHeight.value, sliderTextWeight.value)
+        self.performSegue(withIdentifier: "goToResult", sender:self)
+    }
+    
+    override  func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //para garantir qeu nao possui esta na segue correta
+        if segue.identifier == "goToResult" {
+            //estou forcando um castingDown destion e UIviewControler ou seja
+            //camada muito maior, aqui dimino
+            let destionVc = segue.destination as! ResultsViewController
+            destionVc.BMIcalculte = String(format: "%.2f", calculatorBrain.getBMIValue())
+        }
+        
     }
     
 }
