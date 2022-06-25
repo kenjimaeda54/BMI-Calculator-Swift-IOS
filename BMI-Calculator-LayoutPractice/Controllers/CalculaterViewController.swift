@@ -53,6 +53,8 @@ class CalculaterViewController: UIViewController {
             //camada muito maior, aqui dimino
             let destionVc = segue.destination as! ResultsViewController
             destionVc.BMIcalculte = String(format: "%.2f", calculatorBrain.getBMIValue())
+            destionVc.BMIcolor = calculatorBrain.getBMIColor()
+            destionVc.BMIadvice = calculatorBrain.getBMIAdvice()
         }
         
     }

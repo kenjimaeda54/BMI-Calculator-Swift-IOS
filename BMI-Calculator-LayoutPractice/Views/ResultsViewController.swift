@@ -13,11 +13,16 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var adviceLabel: UILabel!
     @IBOutlet weak var labelResultsBMI: UILabel!
     
-    var BMIcalculte = "0.0"
+    var BMIcalculte: String?
+    var BMIcolor: UIColor?
+    var BMIadvice: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         labelResultsBMI.text = BMIcalculte
+        adviceLabel.text = BMIadvice
+        //view e uma propriedade de UIViewController identico text e para label
+        view.backgroundColor = BMIcolor
     }
     
     
